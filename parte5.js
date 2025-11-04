@@ -12,30 +12,37 @@
 // Implemente polimorfismo no método apresentar() (comportamento diferente para Aluno e Professor).
 
 
+// Classe base Pessoa com nome e idade
 class Pessoa{
     constructor(nome, idade){
+        // Inicializa nome e idade
         this.nome = nome,
         this.idade = idade
     };
 
+    // Método para apresentar a pessoa
     apresentar(){
         console.log(`Olá! Meu nome é ${this.nome} e eu tenho ${this.idade} anos de idade.`)
     };
 };
 
+// Classe Aluno herda de Pessoa, tem matrícula, curso e notas privadas
 class Aluno extends Pessoa{
     #notas;
     constructor(nome, idade, matricula, curso, notas = []){
         super(nome, idade),
+        // Inicializa matrícula, curso e notas
         this.matricula = matricula,
         this.curso = curso,
         this.#notas = notas
     };
 
+    // Adiciona uma nota ao array privado de notas
     adicionarNotas(nota){
         this.#notas.push(nota)
     };
 
+    // Calcula a média das notas e imprime o status do aluno
     calcularMedia(){
         let total = 0;
         for(let i = 0; i < this.#notas.length; i++){
@@ -51,30 +58,38 @@ class Aluno extends Pessoa{
         }
     };
 
+    // Sobrescreve apresentar para incluir curso
     apresentar(){
         console.log(`Olá! Meu nome é ${this.nome}, tenho ${this.idade} anos de idade e estou no curso ${this.curso}.`)
     };
 };
 
+// Classe Professor herda de Pessoa e adiciona disciplina
 class Professor extends Pessoa{
     constructor(nome, idade, disciplina){
         super(nome, idade),
+        // Inicializa disciplina
         this.disciplina = disciplina
     };
 
+    // Sobrescreve apresentar para incluir disciplina
     apresentar(){
         console.log(`Olá! Meu nome é ${this.nome}, tenho ${this.idade} anos de idade e leciona a disciplina de ${this.disciplina}.`)
     };
 };
 
+// Classe Turma representa uma turma com código, alunos e professor
 class Turma{
     constructor(codigo, alunos = [], professor){
+        // Inicializa código, lista de alunos e professor
         this.codigo = codigo,
         this.alunos = alunos,
         this.professor = professor
     };
 };
 
+
+// Instancia alunos, professor e turma para teste do sistema
 const aluno1 = new Aluno('Gabriel', 22, '456', 'DESI', [7, 8, 9]);
 const aluno2 = new Aluno('Eduardo', 20, '234', 'Eletrônica', [4, 0, 1]);
 const aluno3 = new Aluno('Carimbo', 25, '987', 'Refrigeração', [5, 5 ,5]);

@@ -4,18 +4,22 @@
 // Crie um array com diferentes funcionários e mostre o salário de cada um.
 
 
+// Classe base Funcionario com método calcularSalario
 class Funcionario{
     constructor(valorDiaria, dias){
+        // Inicializa valor da diária e dias trabalhados
         this.valorDiaria = valorDiaria,
         this.dias = dias
     };
 
+    // Método para calcular salário do funcionário padrão
     calcularSalario(){
         let salario = this.valorDiaria * this.dias
         console.log(`O salário é R$${salario} após a jornada.`)
     };
 };
 
+// Subclasse FuncionarioHorista calcula salário por hora
 class FuncionarioHorista extends Funcionario{
     constructor(valorHora, horas){
         super();
@@ -29,6 +33,7 @@ class FuncionarioHorista extends Funcionario{
     };
 };
 
+// Subclasse FuncionarioAssalariado calcula salário mensal
 class FuncionarioAssalariado extends Funcionario{
     constructor(valorMensal, qtdMeses){
         super();
@@ -41,6 +46,8 @@ class FuncionarioAssalariado extends Funcionario{
     };
 };
 
+
+// Cria array de funcionários e mostra o salário de cada um (polimorfismo)
 const funcionariosTeste = [new Funcionario(100, 15), new FuncionarioHorista(25, 100), new FuncionarioAssalariado(3000, 5)];
 
 funcionariosTeste.forEach(calculo => calculo.calcularSalario())
@@ -52,12 +59,14 @@ console.log("--------------------------------------------");
 // Crie subclasses Quadrado, Retangulo e Circulo, cada uma com seu cálculo próprio.
 // Crie um array de formas e exiba a área de cada uma.
 
+// Classe base Forma
 class Forma {
     calcularArea(){
 
     }
 }
 
+// Subclasse Retangulo calcula área de um retângulo
 class Retangulo extends Forma{
     constructor(base, altura){
         super(),
@@ -71,6 +80,7 @@ class Retangulo extends Forma{
     };
 };
 
+// Subclasse Quadrado calcula área de um quadrado
 class Quadrado extends Forma{
     constructor(lado){
         super(),
@@ -83,6 +93,7 @@ class Quadrado extends Forma{
     };
 };
 
+// Subclasse Circulo calcula área de um círculo
 class Circulo extends Forma{
     constructor(raio){
         super(),
@@ -92,10 +103,12 @@ class Circulo extends Forma{
     calcularArea(){
         const pi = 3.14;
         let calculoArea = (this.raio ** 2) * pi;
-        console.log(`A área do quadrado é : ${calculoArea}cm2.`);        
+        console.log(`A área do círculo é : ${calculoArea}cm2.`);        
     };
 }
 
+
+// Cria array de formas e exibe a área de cada uma (polimorfismo)
 const formas = [new Quadrado(5), new Retangulo(10, 8), new Circulo(12)];
 
 formas.forEach(calculo => calculo.calcularArea());
